@@ -2957,6 +2957,39 @@ mr = (function (mr, $, window, document){
 
 }(mr, jQuery, window, document));
 
+//////////////// Wizard
+mr = (function (mr, $, window, document){
+    "use strict";
+    
+    mr.wizard = mr.wizard || {};
+
+	  mr.wizard.documentReady = function($){
+
+			$('.wizard').each(function(){
+				var wizard = jQuery(this), themeDefaults = {};
+ 
+        themeDefaults = {
+					headerTag: "h5",
+				  bodyTag: "section",
+					transitionEffect: "slideLeft",
+					autoFocus: true
+				}      
+				
+
+				if(!wizard.is('[role="application"][id^="steps-uid"]')){  	
+						wizard.steps(jQuery.extend({}, themeDefaults, mr.wizard.options));
+		
+		   	    wizard.addClass('active');
+		    }
+				
+		  });
+		};
+
+	  mr.components.documentReady.push(mr.wizard.documentReady);
+	  return mr;
+
+}(mr, jQuery, window, document));
+
 const toggleBtn = document.getElementsByClassName('togglebtn')[0]
 const navbarLinks = document.getElementsByClassName('navbar-links')[0]
 
